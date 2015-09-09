@@ -1,0 +1,16 @@
+<div id="mainDiv">
+<span>API Calls by Day Last 90 Days</span><br />
+<table class="table table-striped table-bordered table-hover table-compressed">
+  <tr>
+    <td>Day</td>
+    <td>Calls</td>
+  </tr>
+  <tr ng-repeat="r in results">
+    <td>{{r.NAME1}}</td>
+    <td>{{r.VALUE}}</td>
+  </tr>
+</table>
+
+<metrics-graph title="Usage by Day" dataset="Calls" model="results"></metrics-graph>
+
+</div>

@@ -1,0 +1,174 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', 'zlib' ]
+2 info using npm@2.9.1
+3 info using node@v0.12.3
+4 verbose install initial load of /Users/jakparks/AdminPanel/package.json
+5 verbose installManyTop reading scoped package data from /Users/jakparks/AdminPanel/node_modules/bluebird/package.json
+6 verbose installManyTop reading scoped package data from /Users/jakparks/AdminPanel/node_modules/body-parser/package.json
+7 verbose installManyTop reading scoped package data from /Users/jakparks/AdminPanel/node_modules/express/package.json
+8 verbose installManyTop reading scoped package data from /Users/jakparks/AdminPanel/node_modules/jdbc/package.json
+9 verbose installManyTop reading scoped package data from /Users/jakparks/AdminPanel/node_modules/log4js/package.json
+10 verbose installManyTop reading scoped package data from /Users/jakparks/AdminPanel/node_modules/method-override/package.json
+11 verbose installManyTop reading scoped package data from /Users/jakparks/AdminPanel/node_modules/morgan/package.json
+12 verbose installManyTop reading scoped package data from /Users/jakparks/AdminPanel/node_modules/passport/package.json
+13 verbose installManyTop reading scoped package data from /Users/jakparks/AdminPanel/node_modules/passport-local/package.json
+14 verbose installManyTop reading scoped package data from /Users/jakparks/AdminPanel/node_modules/properties-reader/package.json
+15 verbose installManyTop reading scoped package data from /Users/jakparks/AdminPanel/node_modules/scp/package.json
+16 verbose readDependencies loading dependencies from /Users/jakparks/AdminPanel/package.json
+17 silly cache add args [ 'zlib', null ]
+18 verbose cache add spec zlib
+19 silly cache add parsed spec { raw: 'zlib',
+19 silly cache add   scope: null,
+19 silly cache add   name: 'zlib',
+19 silly cache add   rawSpec: '',
+19 silly cache add   spec: '*',
+19 silly cache add   type: 'range' }
+20 silly addNamed zlib@*
+21 verbose addNamed "*" is a valid semver range for zlib
+22 silly addNameRange { name: 'zlib', range: '*', hasData: false }
+23 silly mapToRegistry name zlib
+24 silly mapToRegistry using default registry
+25 silly mapToRegistry registry https://registry.npmjs.org/
+26 silly mapToRegistry uri https://registry.npmjs.org/zlib
+27 verbose addNameRange registry:https://registry.npmjs.org/zlib not in flight; fetching
+28 verbose request uri https://registry.npmjs.org/zlib
+29 verbose request no auth needed
+30 info attempt registry request try #1 at 1:47:54 PM
+31 verbose request id 375a5bffcd7b1307
+32 http request GET https://registry.npmjs.org/zlib
+33 http 200 https://registry.npmjs.org/zlib
+34 silly get cb [ 200,
+34 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+34 silly get     etag: '"EBQNZSBGN9EL34IT3BLYCYHQA"',
+34 silly get     'content-type': 'application/json',
+34 silly get     'cache-control': 'max-age=60',
+34 silly get     'content-length': '6082',
+34 silly get     'accept-ranges': 'bytes',
+34 silly get     date: 'Tue, 11 Aug 2015 17:47:34 GMT',
+34 silly get     via: '1.1 varnish',
+34 silly get     age: '25',
+34 silly get     connection: 'keep-alive',
+34 silly get     'x-served-by': 'cache-iad2140-IAD',
+34 silly get     'x-cache': 'HIT',
+34 silly get     'x-cache-hits': '1',
+34 silly get     'x-timer': 'S1439315253.999610,VS0,VE2',
+34 silly get     vary: 'Accept' } ]
+35 verbose get saving zlib to /Users/jakparks/.npm/registry.npmjs.org/zlib/.cache.json
+36 silly addNameRange number 2 { name: 'zlib', range: '*', hasData: true }
+37 silly addNameRange versions [ 'zlib',
+37 silly addNameRange   [ '1.0.0', '1.0.1', '1.0.2', '1.0.3', '1.0.4', '1.0.5' ] ]
+38 silly addNamed zlib@1.0.5
+39 verbose addNamed "1.0.5" is a plain semver version for zlib
+40 silly mapToRegistry name zlib
+41 silly mapToRegistry using default registry
+42 silly mapToRegistry registry https://registry.npmjs.org/
+43 silly mapToRegistry uri https://registry.npmjs.org/zlib
+44 verbose addRemoteTarball https://registry.npmjs.org/zlib/-/zlib-1.0.5.tgz not in flight; adding
+45 verbose addRemoteTarball [ 'https://registry.npmjs.org/zlib/-/zlib-1.0.5.tgz',
+45 verbose addRemoteTarball   '6e7c972fc371c645a6afb03ab14769def114fcc0' ]
+46 info retry fetch attempt 1 at 1:47:55 PM
+47 info attempt registry request try #1 at 1:47:55 PM
+48 http fetch GET https://registry.npmjs.org/zlib/-/zlib-1.0.5.tgz
+49 http fetch 200 https://registry.npmjs.org/zlib/-/zlib-1.0.5.tgz
+50 silly fetchAndShaCheck shasum 6e7c972fc371c645a6afb03ab14769def114fcc0
+51 verbose addTmpTarball /var/folders/jk/r45q5l_x51v_vq8jkfjb7kq40000gn/T/npm-66459-4fe5d9b4/registry.npmjs.org/zlib/-/zlib-1.0.5.tgz not in flight; adding
+52 verbose addTmpTarball already have metadata; skipping unpack for zlib@1.0.5
+53 silly cache afterAdd zlib@1.0.5
+54 verbose afterAdd /Users/jakparks/.npm/zlib/1.0.5/package/package.json not in flight; writing
+55 verbose afterAdd /Users/jakparks/.npm/zlib/1.0.5/package/package.json written
+56 silly install resolved [ { name: 'zlib',
+56 silly install resolved     description: 'Simple, synchronous deflate/inflate for buffers',
+56 silly install resolved     version: '1.0.5',
+56 silly install resolved     homepage: 'https://github.com/kkaefer/node-zlib',
+56 silly install resolved     author: { name: 'Konstantin Käfer', email: 'kkaefer@gmail.com' },
+56 silly install resolved     repository: { type: 'git', url: 'git://github.com/kkaefer/node-zlib.git' },
+56 silly install resolved     engines: { node: '>=0.2.0' },
+56 silly install resolved     licenses: [ [Object] ],
+56 silly install resolved     main: './lib/zlib',
+56 silly install resolved     _npmJsonOpts:
+56 silly install resolved      { file: '/Users/kkaefer/.npm/zlib/1.0.5/package/package.json',
+56 silly install resolved        contributors: false,
+56 silly install resolved        serverjs: false,
+56 silly install resolved        wscript: true },
+56 silly install resolved     _id: 'zlib@1.0.5',
+56 silly install resolved     scripts: { preinstall: 'node-waf clean || true; node-waf configure build' },
+56 silly install resolved     dependencies: {},
+56 silly install resolved     devDependencies: {},
+56 silly install resolved     _engineSupported: true,
+56 silly install resolved     _npmVersion: '1.0.23',
+56 silly install resolved     _nodeVersion: 'v0.4.9',
+56 silly install resolved     _defaultsLoaded: true,
+56 silly install resolved     dist:
+56 silly install resolved      { shasum: '6e7c972fc371c645a6afb03ab14769def114fcc0',
+56 silly install resolved        tarball: 'http://registry.npmjs.org/zlib/-/zlib-1.0.5.tgz' },
+56 silly install resolved     maintainers: [ [Object], [Object], [Object], [Object], [Object] ],
+56 silly install resolved     directories: {},
+56 silly install resolved     _shasum: '6e7c972fc371c645a6afb03ab14769def114fcc0',
+56 silly install resolved     _resolved: 'https://registry.npmjs.org/zlib/-/zlib-1.0.5.tgz',
+56 silly install resolved     _from: 'zlib@*' } ]
+57 info install zlib@1.0.5 into /Users/jakparks/AdminPanel
+58 info installOne zlib@1.0.5
+59 verbose installOne of zlib to /Users/jakparks/AdminPanel not in flight; installing
+60 verbose lock using /Users/jakparks/.npm/_locks/zlib-28f665a080897928.lock for /Users/jakparks/AdminPanel/node_modules/zlib
+61 silly install write writing zlib 1.0.5 to /Users/jakparks/AdminPanel/node_modules/zlib
+62 verbose unbuild node_modules/zlib
+63 silly gentlyRm /Users/jakparks/AdminPanel/node_modules/zlib is being purged from base /Users/jakparks/AdminPanel
+64 verbose gentlyRm don't care about contents; nuking /Users/jakparks/AdminPanel/node_modules/zlib
+65 verbose tar unpack /Users/jakparks/.npm/zlib/1.0.5/package.tgz
+66 verbose tar unpacking to /Users/jakparks/AdminPanel/node_modules/zlib
+67 silly gentlyRm /Users/jakparks/AdminPanel/node_modules/zlib is being purged
+68 verbose gentlyRm don't care about contents; nuking /Users/jakparks/AdminPanel/node_modules/zlib
+69 silly gunzTarPerm modes [ '755', '644' ]
+70 silly gunzTarPerm extractEntry .gitignore
+71 silly gunzTarPerm extractEntry configure
+72 silly gunzTarPerm extractEntry index.js
+73 silly gunzTarPerm extractEntry LICENSE
+74 silly gunzTarPerm extractEntry Makefile
+75 silly gunzTarPerm extractEntry package.json
+76 silly gunzTarPerm extractEntry README.md
+77 silly gunzTarPerm extractEntry wscript
+78 silly gunzTarPerm extractEntry lib/zlib.js
+79 silly gunzTarPerm extractEntry src/node-zlib.cc
+80 silly gunzTarPerm extractEntry test/deflate.test.js
+81 silly gunzTarPerm extractEntry test/inflate.test.js
+82 verbose write writing to /Users/jakparks/AdminPanel/node_modules/zlib/package.json
+83 info preinstall zlib@1.0.5
+84 verbose unsafe-perm in lifecycle true
+85 info zlib@1.0.5 Failed to exec preinstall script
+86 verbose unlock done using /Users/jakparks/.npm/_locks/zlib-28f665a080897928.lock for /Users/jakparks/AdminPanel/node_modules/zlib
+87 verbose stack Error: zlib@1.0.5 preinstall: `node-waf clean || true; node-waf configure build`
+87 verbose stack spawn ENOENT
+87 verbose stack     at ChildProcess.<anonymous> (/usr/local/lib/node_modules/npm/lib/utils/spawn.js:17:16)
+87 verbose stack     at ChildProcess.emit (events.js:110:17)
+87 verbose stack     at maybeClose (child_process.js:1015:16)
+87 verbose stack     at Process.ChildProcess._handle.onexit (child_process.js:1087:5)
+88 verbose pkgid zlib@1.0.5
+89 verbose cwd /Users/jakparks/AdminPanel
+90 error Darwin 14.1.0
+91 error argv "node" "/usr/local/bin/npm" "install" "zlib"
+92 error node v0.12.3
+93 error npm  v2.9.1
+94 error file sh
+95 error code ELIFECYCLE
+96 error errno ENOENT
+97 error syscall spawn
+98 error zlib@1.0.5 preinstall: `node-waf clean || true; node-waf configure build`
+98 error spawn ENOENT
+99 error Failed at the zlib@1.0.5 preinstall script 'node-waf clean || true; node-waf configure build'.
+99 error This is most likely a problem with the zlib package,
+99 error not with npm itself.
+99 error Tell the author that this fails on your system:
+99 error     node-waf clean || true; node-waf configure build
+99 error You can get their info via:
+99 error     npm owner ls zlib
+99 error There is likely additional logging output above.
+100 verbose exit [ 1, true ]
+101 verbose unbuild node_modules/zlib
+102 info preuninstall zlib@1.0.5
+103 info uninstall zlib@1.0.5
+104 verbose unbuild rmStuff zlib@1.0.5 from /Users/jakparks/AdminPanel/node_modules
+105 info postuninstall zlib@1.0.5
+106 silly gentlyRm /Users/jakparks/AdminPanel/node_modules/zlib is being purged from base /Users/jakparks/AdminPanel
+107 verbose gentlyRm don't care about contents; nuking /Users/jakparks/AdminPanel/node_modules/zlib
+108 silly vacuum-fs purging /Users/jakparks/AdminPanel/node_modules/zlib
+109 silly vacuum-fs quitting because other entries in /Users/jakparks/AdminPanel/node_modules

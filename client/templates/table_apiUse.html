@@ -1,0 +1,28 @@
+<span>API Use</span> <br/>
+<span>Displaying {{startIndex}} to {{startIndex + pageSize - 1}} of {{totalRecords}} records</span>
+<table class="table table-striped table-bordered table-hover table-compressed">
+  <tr>
+    <td></td>
+    <td></td>
+    <td>Timestamp</td>
+    <td>Name</td>
+    <td>Device Type ID</td>
+    <td>Device ID</td>
+    <td>OS Version</td>
+    <td>Application Version</td>
+    <td>Application Name</td>
+    <td>Mfg Info ID</td>
+  </tr>
+  <tr ng-repeat="r in results">
+    <td>{{$index + startIndex}}</td>
+    <td><input type="radio" name="selection" id={{r.ID}} ng-click="setActive(r.ID)"></td>
+    <td>{{r.TS}}</td>
+    <td>{{r.NAME}}</td>
+    <td>{{r.DEVICETYPE_ID}}</td>
+    <td>{{r.DEVICEID}}</td>
+    <td>{{r.OSVERSION}}</td>
+    <td>{{r.APPVERSION}}</td>
+    <td>{{r.APPNAME}}</td>
+    <td>{{r.MFGINFO_ID}}</td>
+  </tr>
+</table>

@@ -1,0 +1,41 @@
+<button style="color:black" ng-disabled="active == -1" ng-click="deleteActive()" ng-if="type =='apiUse' || type == 'apiUseByDay'">Delete</button>
+<div ng-if="type == 'apiUse'">
+  <div ng-include="'/client/templates/table_apiUse.html'"></div>
+</div>
+
+<div ng-if="type == 'apiUseByDay'">
+  <div ng-include="'/client/templates/table_apiUseByDay.html'"></div>
+</div>
+
+<div ng-if="type == 'loginsByAppVersion'">
+  <div ng-include="'/client/templates/table_loginsByAppVersion.html'"></div>
+</div>
+
+<div ng-if="type == 'usageByMakeAndModel'">
+  <div ng-include="'/client/templates/table_usageByMakeAndModel.html'"></div>
+</div>
+
+<div ng-if="type == 'usageByAppVersionAndOSVersion'">
+  <div ng-include="'/client/templates/table_usageByAppVersionAndOSVersion.html'"></div>
+</div>
+
+<div ng-if="type == 'usageByAppVersion'">
+  <div ng-include="'/client/templates/table_usageByAppVersion.html'"></div>
+</div>
+
+<div ng-if="type == 'usageByOSVersion'">
+  <div ng-include="'/client/templates/table_usageByOSVersion.html'"></div>
+</div>
+
+<div ng-if="type == 'usageByDay'">
+  <div ng-include="'/client/templates/table_usageByDay.html'"></div>
+</div>
+
+<div ng-if="type == 'visitorsByDay'">
+  <div ng-include="'/client/templates/table_visitorsByDay.html'"></div>
+</div>
+
+<ul class="pager">
+  <li><a href="?type={{type}}&startIndex={{(startIndex == 1 ? 1 : startIndex - pageSize)}}">&larr; Previous</a></li>
+  <li><a href="?type={{type}}&startIndex={{(startIndex + pageSize)}}">Next &rarr;</a></li>
+</ul>

@@ -1,0 +1,16 @@
+<div id="mainDiv">
+<span>Visitors by Day Last 90 Days</span>
+<table class="table table-striped table-bordered table-hover table-compressed">
+  <tr>
+    <td>Day</td>
+    <td>Visitors</td>
+  </tr>
+  <tr ng-repeat="r in results">
+    <td>{{r.NAME1}}</td>
+    <td>{{r.VALUE}}</td>
+  </tr>
+</table>
+
+<metrics-graph title="Visitors by Day" dataset="Visitors" model="results"></metrics-graph>
+
+</div>

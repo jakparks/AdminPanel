@@ -1,0 +1,18 @@
+<span>API Use By Day</span> <br/>
+<span>Displaying {{startIndex}} to {{startIndex + pageSize - 1}} of {{totalRecords}} records</span>
+<table class="table table-striped table-bordered table-hover table-compressed">
+  <tr>
+    <td></td>
+    <td></td>
+    <td>Day</td>
+    <td>API</td>
+    <td>Count</td>
+  </tr>
+  <tr ng-repeat="r in results">
+    <td>{{$index + startIndex}}</td>
+    <td><input type="radio" name="selection" id={{r.ID}} ng-click="setActive(r.ID)"></td>
+    <td>{{r.DAY}}</td>
+    <td>{{r.AREA}}</td>
+    <td>{{r.COUNT}}</td>
+  </tr>
+</table>

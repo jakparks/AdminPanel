@@ -1,0 +1,40 @@
+<span>Device Types</span> <br />
+<button style="color:black" ng-disabled="active == -1" ng-click="deleteActive()">Delete</button>
+<button style="color:black" ng-disabled="active == -1" ng-click="editActive()">Edit</button>
+<button style="color:black" ng-click="addNew()">Add Row</button>
+<table class="table table-striped table-bordered table-hover table-compressed">
+  <tr>
+    <td></td>
+    <td></td>
+    <td>Device Id</td>
+    <td>Name</td>
+    <td>Resolution</td>
+    <td>Color Depth</td>
+  </tr>
+  <tr ng-repeat='r in results'>
+
+      <td ng-if="!(editing && active == r.ID)">{{$index + 1}}</td>
+      <td ng-if="!(editing && active == r.ID)"><input type="radio" name="selection" id={{r.ID}} ng-click="setActive(r.ID)"></td>
+      <td ng-if="!(editing && active == r.ID)">{{r.ID}}</td>
+      <td ng-if="!(editing && active == r.ID)">{{r.NAME}}</td>
+      <td ng-if="!(editing && active == r.ID)">{{r.RESOLUTION}}</td>
+      <td ng-if="!(editing && active == r.ID)">{{r.COLORDEPTH}}</td>
+
+
+      <td ng-if="editing && active == r.ID"><button style="color:black" ng-click="cancelEdit()">Cancel</button></td>
+      <td ng-if="editing && active == r.ID"><button style="color:black" ng-click="saveEdit(active, name, resolution, colorDepth)">Save</button></td>
+      <td ng-if="editing && active == r.ID">{{r.ID}}</td>
+      <td ng-if="editing && active == r.ID"><input type="text" ng-model="$parent.name" placeholder="{{r.NAME}}"></td>
+      <td ng-if="editing && active == r.ID"><input type="text" ng-model="$parent.resolution" placeholder="{{r.RESOLUTION}}"></td>
+      <td ng-if="editing && active == r.ID"><input type="text" ng-model="$parent.colorDepth" placeholder="{{r.COLORDEPTH}}"></td>
+
+  </tr>
+  <tr ng-if="adding" style="backgroundColor:black">
+    <td><button style="color:black" ng-click="cancel()">Cancel</button></td>
+    <td><button style="color:black" ng-click="save(name, resolution, colorDepth)">Save</button></td>
+    <td></td>
+    <td><input type="text" ng-model="name"></td>
+    <td><input type="text" ng-model="resolution"></td>
+    <td><input type="text" ng-model="colorDepth"></td>
+  </tr>
+</table>

@@ -1,0 +1,33 @@
+<span>API Calls by OS Version Last 30 Days</span><br />
+<table class="table table-striped table-bordered table-hover table-compressed">
+  <tr>
+    <td>iOS Version</td>
+    <td>Calls</td>
+  </tr>
+  <tr ng-repeat="r in results.ios">
+    <td>{{r.NAME1}}</td>
+    <td>{{r.VALUE}}</td>
+  </tr>
+</table>
+<br />
+<table class="table table-striped table-bordered table-hover table-compressed">
+  <tr>
+    <td>Android Version</td>
+    <td>Calls</td>
+  </tr>
+  <tr ng-repeat="r in results.android">
+    <td>{{r.NAME1}}</td>
+    <td>{{r.VALUE}}</td>
+  </tr>
+</table>
+<br />
+<table class="table table-striped table-bordered table-hover table-compressed">
+  <tr>
+    <td>Other OS Version</td>
+    <td>Calls</td>
+  </tr>
+  <tr ng-repeat="r in results.other">
+    <td>{{r.NAME1}}</td>
+    <td>{{r.VALUE}}</td>
+  </tr>
+</table>
