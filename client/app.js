@@ -297,15 +297,7 @@ adminPanel.controller("clientActivityUsageController", function($scope, $http, $
       $scope.totalRecords = response.data.totalRecords;
       $scope.results = response.data.result;
       $scope.results = groupByName($scope.results);
-
-      for(i = 0; i < $scope.results.length; i++) {
-        $scope['result' + i] = $scope.results[i];
-      }
-      $scope.attachmentListViewed = $scope.results["client activity AttachmentListViewed"];
-      $scope.index = 1;
-      $scope.attachmentViewed = $scope.results["client activity AttachmentViewed"];
-      $scope.index = 2;
-
+      console.log($scope.results);
 
     }
   });

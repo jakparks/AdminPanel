@@ -1,19 +1,11 @@
 <span>Client Activity Calls Last 90 Days</span><br />
 <table>
-<tr>
+<tr ng-repeat="r in results">
   <td>
-    <calls-table model="attachmentListViewed" title="AttachmentListViewed"></calls-table>
+    <calls-table model="r" title="{{r[0].NAME1}}"></calls-table>
   </td>
   <td>
-    <metrics-graph title="Attachment List Viewed" dataset="Viewed" model="attachmentListViewed" id="graph1"></metrics-graph>
-  </td>
-</tr>
-<tr>
-  <td>
-    <calls-table model="attachmentViewed" title="AttachmentViewed"></calls-table>
-  </td>
-  <td>
-    <metrics-graph title="Attachment Viewed" dataset="Viewed" model="attachmentViewed" id="graph2"></metrics-graph>
+    <metrics-graph title="{{r[0].NAME1}}" dataset="" model="r" id="graph{{$index}}"></metrics-graph>
   </td>
 </tr>
 </table>
