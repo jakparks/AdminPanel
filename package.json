@@ -1,0 +1,34 @@
+{
+  "name": "admin_panel",
+  "version": "1.0.0",
+  "description": "Rewrite of the Admin Panel application in Node.js",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.13.3",
+    "jdbc": "^0.0.13",
+    "log4js": "^0.6.26",
+    "passport": "^0.2.2",
+    "method-override": "^2.3.5",
+    "express": "^4.13.3",
+    "bluebird": "^2.9.34",
+    "morgan": "^1.6.1",
+    "scp": "^0.0.3",
+    "properties-reader": "^0.0.10",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jakparks/AdminPanel.git"
+  },
+  "author": "Jake Parks",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jakparks/AdminPanel/issues"
+  },
+  "homepage": "https://github.com/jakparks/AdminPanel#readme"
+}
