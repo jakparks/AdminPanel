@@ -23,10 +23,10 @@
 
     <td ng-if="editing && active == r.ID"><button style="color:black" ng-click="cancelEdit()">Cancel</button></td>
     <td ng-if="editing && active == r.ID"><button style="color:black" ng-click="saveEdit(active, name, url, author, searchFlag)">Save</button></td>
-    <td ng-if="editing && active == r.ID"><input type="text" ng-model="$parent.name" placeholder="{{r.NAME}}"></td>
-    <td ng-if="editing && active == r.ID"><input type="text" ng-model="$parent.url" placeholder="{{r.URL}}"></td>
-    <td ng-if="editing && active == r.ID"><input type="text" ng-model="$parent.author" placeholder="{{r.AUTHOR}}"></td>
-    <td ng-if="editing && active == r.ID"><input type="text" ng-model="$parent.searchFlag" placeholder="{{r.SEARCHFLAG}}"></td>
+    <td ng-if="editing && active == r.ID"><input type="text" ng-model="$parent.name"></td>
+    <td ng-if="editing && active == r.ID"><input type="text" ng-model="$parent.url"></td>
+    <td ng-if="editing && active == r.ID"><input type="text" ng-model="$parent.author"></td>
+    <td ng-if="editing && active == r.ID"><input type="text" ng-model="$parent.searchFlag"></td>
     <td ng-if="editing && active == r.ID">{{r.LAST_CONTENT_DATE}}</td>
   </tr>
   <tr ng-if="adding" style="backgroundColor:black">

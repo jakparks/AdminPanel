@@ -318,6 +318,16 @@ adminPanel.controller("deviceTypesController", function($scope, $http, $routePar
   $scope.name;
   $scope.resolution;
   $scope.colorDepth;
+
+  $scope.clearVars = function() {
+    $scope.active = -1;
+    $scope.adding = false;
+    $scope.editing = false;
+    $scope.name = "";
+    $scope.resolution = "";
+    $scope.colorDepth = "";
+  }
+
   $scope.setActive = function(id) {
     $scope.active = parseInt(id);
   }
@@ -333,20 +343,23 @@ adminPanel.controller("deviceTypesController", function($scope, $http, $routePar
 
   $scope.deleteActive = function() {
     $http.get('/edit/deleteItem/METRICS_DEVICETYPE/' + $scope.active).then(function(response) {
-      $scope.active = -1;
+      $scope.clearVars();
       $scope.refresh();
     });
   }
 
   $scope.editActive = function() {
     $scope.editing = true;
+    $scope.name = $scope.getResult($scope.active).NAME;
+    $scope.resolution = $scope.getResult($scope.active).RESOLUTION;
+    $scope.colorDepth = $scope.getResult($scope.active).COLORDEPTH;
   }
 
   $scope.saveEdit = function(id, name, resolution, colorDepth) {
     $http.get('/edit/editDeviceTypes/' + id + '/' + name + '/' + resolution + '/' + colorDepth).then(function(response) {
       $scope.active = -1;
       $scope.refresh();
-      $scope.editing = false;
+      $scope.clearVars();
     });
   }
 
@@ -359,16 +372,24 @@ adminPanel.controller("deviceTypesController", function($scope, $http, $routePar
     $http.get('/edit/addItem/' + 'METRICS_DEVICETYPE/' + angular.toJson(row)).then(function(response) {
       $scope.refresh();
     });
-    $scope.adding = false;
+    $scope.clearVars();
   }
 
   $scope.cancel = function() {
     $scope.adding = false;
+    $scope.clearVars();
   }
 
   $scope.cancelEdit = function() {
-    $scope.editing = false;
-    $scope.active = -1;
+    $scope.clearVars();
+  }
+
+  $scope.getResult = function(id) {
+    for(i = 0; i < $scope.results.length; i++) {
+      if($scope.results[i].ID == id) {
+        return $scope.results[i];
+      }
+    }
   }
 
   $scope.refresh();
@@ -383,6 +404,15 @@ adminPanel.controller("keyValuesController", function($scope, $http, $routeParam
   $scope.isPublic;
   $scope.note;
 
+  $scope.clearVars = function() {
+    $scope.active = -1;
+    $scope.adding = false;
+    $scope.key = "";
+    $scope.value = "";
+    $scope.isPublic = "";
+    $scope.note = "";
+  }
+
   $scope.setActive = function(id) {
     $scope.active = id;
   }
@@ -391,11 +421,16 @@ adminPanel.controller("keyValuesController", function($scope, $http, $routeParam
     $http.get('/edit/deleteItem/MMKEYVALUE_KEYVALUE/' + $scope.active).then(function(response) {
       $scope.active = -1;
       $scope.refresh();
+      $scope.clearVars();
     });
   }
 
   $scope.editActive = function() {
     $scope.editing = true;
+    $scope.key = $scope.getResult($scope.active).KEY;
+    $scope.value = $scope.getResult($scope.active).VALUE;
+    $scope.isPublic = $scope.getResult($scope.active).IS_PUBLIC;
+    $scope.note = $scope.getResult($scope.active).NOTE;
   }
 
   $scope.saveEdit = function(id, key, value, isPublic, note) {
@@ -403,12 +438,14 @@ adminPanel.controller("keyValuesController", function($scope, $http, $routeParam
       $scope.active = -1;
       $scope.refresh();
       $scope.editing = false;
+      $scope.clearVars();
     });
   }
 
   $scope.cancelEdit = function() {
     $scope.editing = false;
     $scope.active = -1;
+    $scope.clearVars();
   }
 
   $scope.addNew = function() {
@@ -419,6 +456,7 @@ adminPanel.controller("keyValuesController", function($scope, $http, $routeParam
     var row = [{name: 'KEY', value: key}, {name: 'VALUE', value: value}, {name: 'IS_PUBLIC', value: isPublic}, {name: 'NOTE', value: note}];
     $http.get('/edit/addItem/' + 'MMKEYVALUE_KEYVALUE/' + angular.toJson(row)).then(function(response) {
       $scope.refresh();
+      $scope.clearVars();
     });
     $scope.adding = false;
   }
@@ -435,6 +473,15 @@ adminPanel.controller("keyValuesController", function($scope, $http, $routeParam
       }
     });
   }
+
+  $scope.getResult = function(id) {
+    for(i = 0; i < $scope.results.length; i++) {
+      if($scope.results[i].ID == id) {
+        return $scope.results[i];
+      }
+    }
+  }
+
   $scope.refresh();
 });
 
@@ -447,6 +494,16 @@ adminPanel.controller("rssFeedController", function($scope, $http, $routeParams)
   $scope.url;
   $scope.loginRequired;
   $scope.lastContentDate;
+
+  $scope.clearVars = function() {
+    $scope.active = -1;
+    $scope.adding = false;
+    $scope.group = "";
+    $scope.name = "";
+    $scope.url = "";
+    $scope.loginRequired = "";
+    $scope.lastContentDate = "";
+  }
 
   $scope.setActive = function(id) {
     $scope.active = id;
@@ -461,6 +518,11 @@ adminPanel.controller("rssFeedController", function($scope, $http, $routeParams)
 
   $scope.editActive = function() {
     $scope.editing = true;
+    $scope.group = $scope.getResult($scope.active).GROUP;
+    $scope.name = $scope.getResult($scope.active).NAME;
+    $scope.url = $scope.getResult($scope.active).URL;
+    $scope.loginRequired = $scope.getResult($scope.active).LOGIN_REQUIRED;
+    $scope.lastContentDate = $scope.getResult($scope.active).LAST_CONTENT_DATE;
   }
 
   $scope.saveEdit = function(id, group, name, url, loginRequired) {
@@ -468,12 +530,14 @@ adminPanel.controller("rssFeedController", function($scope, $http, $routeParams)
       $scope.active = -1;
       $scope.refresh();
       $scope.editing = false;
+      $scope.clearVars();
     });
   }
 
   $scope.cancelEdit = function() {
     $scope.active = -1;
     $scope.editing = false;
+    $scope.clearVars();
   }
 
   $scope.addNew = function() {
@@ -483,12 +547,14 @@ adminPanel.controller("rssFeedController", function($scope, $http, $routeParams)
   $scope.save = function(group, name, url, loginRequired) {
     $http.get('/edit/addRssFeed/' + group + '/' + name + '/' + url + '/' + loginRequired).then(function(response) {
       $scope.refresh();
+      $scope.clearVars();
     });
     $scope.adding = false;
   }
 
   $scope.cancel = function() {
     $scope.adding = false;
+    $scope.clearVars();
   }
 
   $scope.refresh = function() {
@@ -498,6 +564,14 @@ adminPanel.controller("rssFeedController", function($scope, $http, $routeParams)
         $scope.results = response.data.result;
       }
     });
+  }
+
+  $scope.getResult = function(id) {
+    for(i = 0; i < $scope.results.length; i++) {
+      if($scope.results[i].ID == id) {
+        return $scope.results[i];
+      }
+    }
   }
 
   $scope.refresh();
@@ -512,6 +586,15 @@ adminPanel.controller("videoChannelsController", function($scope, $http, $routeP
   $scope.searchFlag;
   $scope.lastContentDate;
 
+  $scope.clearVars = function() {
+    $scope.active = -1;
+    $scope.name = "";
+    $scope.url = "";
+    $scope.author = "";
+    $scope.searchFlag = "";
+    $scope.lastContentDate = "";
+  }
+
   $scope.setActive = function(id) {
     $scope.active = id;
   }
@@ -525,6 +608,11 @@ adminPanel.controller("videoChannelsController", function($scope, $http, $routeP
 
   $scope.editActive = function() {
     $scope.editing = true;
+    $scope.name = $scope.getResult($scope.active).NAME;
+    $scope.url = $scope.getResult($scope.active).URL;
+    $scope.author = $scope.getResult($scope.active).AUTHOR;
+    $scope.searchFlag = $scope.getResult($scope.active).SEARCHFLAG;
+    $scope.lastContentDate = $scope.getResult($scope.active).LAST_CONTENT_DATE;
   }
 
   $scope.saveEdit = function(id, name, url, author, searchFlag) {
@@ -532,12 +620,14 @@ adminPanel.controller("videoChannelsController", function($scope, $http, $routeP
       $scope.active = -1;
       $scope.refresh();
       $scope.editing = false;
+      $scope.clearVars();
     });
   }
 
   $scope.cancelEdit = function() {
     $scope.active = -1;
     $scope.editing = false;
+    $scope.clearVars();
   }
 
   $scope.addNew = function() {
@@ -547,12 +637,14 @@ adminPanel.controller("videoChannelsController", function($scope, $http, $routeP
   $scope.save = function(name, url, author, searchFlag) {
     $http.get('/edit/addVideoChannel/' + name + '/' + url + '/' + author + '/' + searchFlag).then(function(response) {
       $scope.refresh();
+      $scope.clearVars();
     });
     $scope.adding = false;
   }
 
   $scope.cancel = function() {
     $scope.adding = false;
+    $scope.clearVars();
   }
 
   $scope.refresh = function() {
@@ -562,6 +654,14 @@ adminPanel.controller("videoChannelsController", function($scope, $http, $routeP
         $scope.results = response.data.result;
       }
     });
+  }
+
+  $scope.getResult = function(id) {
+    for(i = 0; i < $scope.results.length; i++) {
+      if($scope.results[i].ID == id) {
+        return $scope.results[i];
+      }
+    }
   }
 
   $scope.refresh();

@@ -21,10 +21,10 @@
 
     <td ng-if="editing && active == r.ID"><button style="color:black" ng-click="cancelEdit()">Cancel</button></td>
     <td ng-if="editing && active == r.ID"><button style="color:black" ng-click="saveEdit(active, key, value, isPublic, note)">Save</button></td>
-    <td ng-if="editing && active == r.ID"><input type="text" ng-model="$parent.key" placeholder="{{r.KEY}}"></td>
-    <td ng-if="editing && active == r.ID"><input type="text" ng-model="$parent.value" placeholder="{{r.VALUE}}"></td>
-    <td ng-if="editing && active == r.ID"><input type="text" ng-model="$parent.isPublic" placeholder="{{r.IS_PUBLIC}}"></td>
-    <td ng-if="editing && active == r.ID"><input type="text" ng-model="$parent.note" placeholder="{{r.NOTE}}"></td>
+    <td ng-if="editing && active == r.ID"><input type="text" ng-model="$parent.key"></td>
+    <td ng-if="editing && active == r.ID"><input type="text" ng-model="$parent.value"></td>
+    <td ng-if="editing && active == r.ID"><input type="text" ng-model="$parent.isPublic"></td>
+    <td ng-if="editing && active == r.ID"><input type="text" ng-model="$parent.note"></td>
   </tr>
   <tr ng-if="adding" style="backgroundColor:black">
     <td><button style="color:black" ng-click="cancel()">Cancel</button></td>
