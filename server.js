@@ -427,6 +427,23 @@ server.get('/pilots/pilotApiConfig', function(req, res) {
   });
 });
 
+server.get('/pilots/pilotApiUserConfig/:id', function(req, res) {
+  jdbc.open(function(err, conn) {
+    if(conn) {
+      jdbc.executeQuery("SELECT ID as NAME1, PILOT_API_ID as NAME2, CCO_ID as VALUE FROM PILOT_API_USERS WHERE PILOT_API_ID = " + req.params.id, function(err, result) {
+        if(err) {
+          logger.info(err);
+        } else {
+          logger.info("Fetched pilot api configuration users");
+          writeResponse(res, 'success', result, -1, -1, result.length);
+        }
+      })
+    } else {
+      logger.info("No connection!");
+    }
+  });
+});
+
 server.get('/edit/deleteItem/:table/:id', function(req, res) {
   jdbc.open(function(err, conn) {
     if(conn) {
@@ -445,10 +462,10 @@ server.get('/edit/deleteItem/:table/:id', function(req, res) {
   });
 });
 
-server.get('/edit/addRssFeed/:group/:name/:url/:loginRequired/', function(req, res) {
+server.get('/edit/addRssFeed/:group/:name/:href(*)/:loginRequired/', function(req, res) {
   jdbc.open(function(err, conn) {
     if(conn) {
-      jdbc.executeUpdate("INSERT INTO RSSFEED_RSSFEED VALUES (null, " + enquote(req.params.name) + ", " + enquote(req.params.group) + ", " + enquote(req.params.url) + ", " + enquote(req.params.loginRequired) + ", " + "SYSDATE" + ")", function(err, num_rows) {
+      jdbc.executeUpdate("INSERT INTO RSSFEED_RSSFEED VALUES (null, " + enquote(req.params.name) + ", " + enquote(req.params.group) + ", " + enquote(req.params.href) + ", " + enquote(req.params.loginRequired) + ", " + "SYSDATE" + ")", function(err, num_rows) {
         if(err) {
           logger.info(err);
         } else {
@@ -481,10 +498,28 @@ server.get('/edit/addPilot/', function(req, res) {
   });
 });
 
-server.get('/edit/addVideoChannel/:name/:url/:author/:searchFlag/', function(req, res) {
+server.get('/edit/addPilotUser', function(req, res) {
   jdbc.open(function(err, conn) {
     if(conn) {
-      jdbc.executeUpdate("INSERT INTO VIDEO_CHANNELS VALUES (null, " + enquote(req.params.name) + ", " + enquote(req.params.url) + ", " + enquote(req.params.searchFlag) + ", " + enquote(req.params.author) + ", " + "SYSDATE" + ")", function(err, num_rows) {
+      jdbc.executeUpdate("INSERT INTO PILOT_API_USERS VALUES (null, " + enquote(req.query.id) + ", " + enquote(req.query.CCOId) + ", null)", function(err, num_rows) {
+        if(err) {
+          logger.info(err);
+        } else {
+          logger.info("Added into PILOT_API_USERS");
+          writeResponse(res, 'success', num_rows);
+          closeConn();
+        }
+      })
+    } else {
+      logger.info("No connection!");
+    }
+  });
+});
+
+server.get('/edit/addVideoChannel/:name/:href(*)/:author/:searchFlag/', function(req, res) {
+  jdbc.open(function(err, conn) {
+    if(conn) {
+      jdbc.executeUpdate("INSERT INTO VIDEO_CHANNELS VALUES (null, " + enquote(req.params.name) + ", " + enquote(req.params.href) + ", " + enquote(req.params.searchFlag) + ", " + enquote(req.params.author) + ", " + "SYSDATE" + ")", function(err, num_rows) {
         if(err) {
           logger.info(err);
         } else {
@@ -535,7 +570,7 @@ server.get('/edit/editDeviceTypes/:id/:name/:resolution/:colorDepth', function(r
   });
 });
 
-server.get('/edit/editKeyValues/:id/:key/:value/:isPublic/:note', function(req, res) {
+server.get('/edit/editKeyValues/:id/:key/:value(*)/:isPublic/:note', function(req, res) {
   jdbc.open(function(err, conn) {
     if(conn) {
       jdbc.executeUpdate("UPDATE MMKEYVALUE_KEYVALUE SET KEY=" + enquote(req.params.key) + ", " + "VALUE=" + enquote(req.params.value) + ", " + "IS_PUBLIC=" + enquote(req.params.isPublic) + ", " + "NOTE=" + enquote(req.params.note) + " WHERE ID=" + enquote(req.params.id), function(err, num_rows) {
@@ -553,10 +588,10 @@ server.get('/edit/editKeyValues/:id/:key/:value/:isPublic/:note', function(req, 
   });
 });
 
-server.get('/edit/editRssFeed/:id/:group/:name/:url/:loginRequired', function(req, res) {
+server.get('/edit/editRssFeed/:id/:group/:name/:href(*)/:loginRequired', function(req, res) {
   jdbc.open(function(err, conn) {
     if(conn) {
-      jdbc.executeUpdate("UPDATE RSSFEED_RSSFEED SET \"GROUP\"=" + enquote(req.params.group) + ", " + "NAME=" + enquote(req.params.name) + ", " + "URL=" + enquote(req.params.url) + ", " + "LOGIN_REQUIRED=" + enquote(req.params.loginRequired) + " WHERE ID=" + enquote(req.params.id), function(err, num_rows) {
+      jdbc.executeUpdate("UPDATE RSSFEED_RSSFEED SET \"GROUP\"=" + enquote(req.params.group) + ", " + "NAME=" + enquote(req.params.name) + ", " + "URL=" + enquote(req.params.href) + ", " + "LOGIN_REQUIRED=" + enquote(req.params.loginRequired) + " WHERE ID=" + enquote(req.params.id), function(err, num_rows) {
         if(err) {
           logger.info(err);
         } else {
@@ -571,10 +606,10 @@ server.get('/edit/editRssFeed/:id/:group/:name/:url/:loginRequired', function(re
   });
 });
 
-server.get('/edit/editVideoChannel/:id/:name/:url/:author/:searchFlag', function(req, res) {
+server.get('/edit/editVideoChannel/:id/:name/:href(*)/:author/:searchFlag', function(req, res) {
   jdbc.open(function(err, conn) {
     if(conn) {
-      jdbc.executeUpdate("UPDATE VIDEO_CHANNELS SET NAME=" + enquote(req.params.name) + ", " + "URL=" + enquote(req.params.url) + ", " + "AUTHOR=" + enquote(req.params.author) + ", " + "SEARCHFLAG=" + enquote(req.params.searchFlag) + " WHERE ID=" + enquote(req.params.id), function(err, num_rows) {
+      jdbc.executeUpdate("UPDATE VIDEO_CHANNELS SET NAME=" + enquote(req.params.name) + ", " + "URL=" + enquote(req.params.href) + ", " + "AUTHOR=" + enquote(req.params.author) + ", " + "SEARCHFLAG=" + enquote(req.params.searchFlag) + " WHERE ID=" + enquote(req.params.id), function(err, num_rows) {
         if(err) {
           logger.info(err);
         } else {

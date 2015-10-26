@@ -1,0 +1,26 @@
+<select name="selectApi" ng-model="selection.id">
+  <option ng-repeat="a in apis" value="{{a.ID}}">{{a.ID}} - {{a.NAME}}</option>
+</select>
+<br />
+<button style="color:black" ng-disabled="active == -1" ng-click="deleteActive()">Delete</button>
+<button style="color:black" ng-click="addNew()">Add Row</button>
+<table class="table table-striped table-bordered table-hover table-compressed">
+  <tr>
+    <td></td>
+    <td>Id</td>
+    <td>Pilot Api Id</td>
+    <td>CCO Id</td>
+  </tr>
+  <tr ng-repeat="r in results">
+    <td><input type="radio" name="selection" id={{r.NAME1}} ng-click="setActive(r.NAME1)"></td>
+    <td>{{r.NAME1}}</td>
+    <td>{{r.NAME2}}</td>
+    <td>{{r.VALUE}}</td>
+  </tr>
+  <tr ng-if="adding" style="backgroundColor:black">
+    <td><button style="color:black" ng-click="cancel()">Cancel</button></td>
+    <td><button style="color:black" ng-click="save(addId, ccoid)">Save</button></td>
+    <td><input type="text" ng-model="addId"></td>
+    <td><input type="text" ng-model="ccoid"></td>
+  </tr>
+</table>

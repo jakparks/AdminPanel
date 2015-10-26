@@ -36,6 +36,9 @@ adminPanel.config(["$routeProvider", "$locationProvider", "$httpProvider",
             }).when("/adminPanel/clientActivityUsage", {
               templateUrl: "/client/templates/clientActivityUsage.html",
               controller: "clientActivityUsageController"
+            }).when("/adminPanel/pilots/pilotApiUserConfig", {
+              templateUrl: "/client/templates/pilotApiUserConfig.html",
+              controller: "pilotApiUserConfigController"
             })
             .otherwise({
                 redirectTo: "/"
@@ -129,6 +132,11 @@ adminPanel.controller("rootController", function($scope, $http, $location) {
             {
               "name": "Pilot Api Configuration",
               "url": "/adminPanel/pilots/pilotApiConfig",
+              "isActive": false
+            },
+            {
+              "name": "Pilot Api User Configuration",
+              "url": "/adminPanel/pilots/pilotApiUserConfig",
               "isActive": false
             }
           ]
@@ -644,6 +652,65 @@ adminPanel.controller("pilotApiConfigController", function($scope, $http, $route
 
   $scope.refresh();
 
+});
+
+adminPanel.controller("pilotApiUserConfigController", function($scope, $http, $routeParams) {
+  $scope.selection = {
+    id: null
+  };
+  $scope.apis;
+  $scope.results;
+  $scope.active = -1;
+  $scope.addId;
+  $scope.ccoid;
+
+  $scope.setActive = function(id) {
+    $scope.active = id;
+  }
+
+  $scope.deleteActive = function() {
+    $http.get('/edit/deleteItem/PILOT_API_USERS/' + $scope.active).then(function(response) {
+      $scope.active = -1;
+      $scope.getResults();
+    });
+  }
+
+  $scope.addNew = function() {
+    $scope.adding = true;
+  }
+
+  $scope.cancel = function() {
+    $scope.adding = false;
+  }
+
+  $scope.save = function(pilotApiId, CCOId) {
+    $http.get('/edit/addPilotUser?id=' + pilotApiId + '&CCOId=' + CCOId).then(function(response) {
+      $scope.getResults();
+    });
+    $scope.adding = false;
+  }
+
+  $scope.getAllApis = function() {
+    $http.get('/pilots/pilotApiConfig/').then(function(response) {
+      if(response && response.data && response.data.result) {
+        $scope.apis = response.data.result;
+      }
+    });
+  }
+
+  $scope.getResults = function() {
+    $http.get('/pilots/pilotApiUserConfig/' + $scope.selection.id).then(function(response) {
+      if(response && response.data && response.data.result) {
+        $scope.results = response.data.result;
+      }
+    })
+  }
+
+  $scope.$watch('selection.id', function() {
+    $scope.getResults();
+  });
+
+  $scope.getAllApis();
 });
 
 function groupByName(list) {
