@@ -668,10 +668,6 @@ server.get('/edit/addItem/:table/:row', function(req, res) {
   });
 });
 
-server.get('/testSQL/:obj', function(req, res) {
-  var result = JSON.parse(req.params.obj);
-  logger.info('test2 ' + result[0].test2);
-});
 
 function enquote(s) {
   return "'" + s + "'";
