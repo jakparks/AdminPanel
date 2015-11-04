@@ -18,9 +18,11 @@ var express = require('express'),
     log4js = require("log4js"),
     zlib = require("zlib"),
     jdbc = new ( require("jdbc") ),
+    config = require('./configuration'),
     stream = require("stream");
 
-var authenticatedUser = 'jakparks';
+var basicAuth = require('basic-auth-connect');
+server.use(basicAuth(config.user, config.password));
 
 // Configure Logging including mogran for all HTTP requests
 log4js.configure({
@@ -54,8 +56,8 @@ var jdbcConfig = {
   libs: [],
   drivername: 'oracle.jdbc.driver.OracleDriver',
   url: 'jdbc:oracle:thin:@lnxdb-dev-vm-241.cisco.com:1524:AS1DEV',
-  user: 'CMSP1',
-  password: 'c1sc0cmsp'
+  user: config.user,
+  password: config.password
 };
 
 jdbc.initialize(jdbcConfig, function(err, res) {
@@ -524,24 +526,6 @@ server.get('/edit/addVideoChannel/:name/:href(*)/:author/:searchFlag/', function
           logger.info(err);
         } else {
           logger.info("Added into VIDEO_CHANNELS");
-          writeResponse(res, 'success', num_rows);
-          closeConn();
-        }
-      });
-    } else {
-      logger.info("No connection!");
-    }
-  });
-});
-
-server.get('/edit/addTechZone/:name', function(req, res) {
-  jdbc.open(function(err, conn) {
-    if(conn) {
-      jdbc.executeUpdate("INSERT INTO TECHZONE_CATEGORIES VALUES (null, " + enquote(req.params.name)  + ", " + "SYSDATE" + ")", function(err, num_rows) {
-        if(err) {
-          logger.info(err);
-        } else {
-          logger.info("Added into TECHZONE_CATEGORIES");
           writeResponse(res, 'success', num_rows);
           closeConn();
         }

@@ -4,6 +4,7 @@
   "description": "Rewrite of the Admin Panel application in Node.js",
   "main": "server.js",
   "dependencies": {
+    "basic-auth-connect": "^1.0.0",
     "body-parser": "^1.13.3",
     "jdbc": "^0.0.13",
     "log4js": "^0.6.26",

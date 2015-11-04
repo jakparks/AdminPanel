@@ -683,21 +683,6 @@ adminPanel.controller("techZoneController", function($scope, $http, $routeParams
     });
   }
 
-  $scope.addNew = function() {
-    $scope.adding = true;
-  }
-
-  $scope.save = function(name) {
-    $http.get('/edit/addTechZone/' + name).then(function(response) {
-      $scope.refresh();
-    });
-    $scope.adding = false;
-  }
-
-  $scope.cancel = function() {
-    $scope.adding = false;
-  }
-
   $scope.refresh = function() {
     $http.get('/configuration/techZone').then(function(response) {
       if(response && response.data && response.data.result) {
@@ -776,10 +761,12 @@ adminPanel.controller("pilotApiUserConfigController", function($scope, $http, $r
   }
 
   $scope.addNew = function() {
+    $scope.addId = $scope.selection.id;
     $scope.adding = true;
   }
 
   $scope.cancel = function() {
+    $scope.addId = null;
     $scope.adding = false;
   }
 
@@ -788,6 +775,7 @@ adminPanel.controller("pilotApiUserConfigController", function($scope, $http, $r
       $scope.getResults();
     });
     $scope.adding = false;
+    $scope.addId = null;
   }
 
   $scope.getAllApis = function() {
@@ -808,6 +796,7 @@ adminPanel.controller("pilotApiUserConfigController", function($scope, $http, $r
 
   $scope.$watch('selection.id', function() {
     $scope.getResults();
+    $scope.cancel();
   });
 
   $scope.getAllApis();
