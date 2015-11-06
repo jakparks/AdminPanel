@@ -359,6 +359,34 @@ server.get('/configuration/keyValues', function(req, res) {
   });
 });
 
+function reformatDateString(dbString) {
+  var months = [];
+  months[0] = ('Jan');
+  months[1] = ('Feb');
+  months[2] = ('Mar');
+  months[3] = ('Apr');
+  months[4] = ('May');
+  months[5] = ('Jun');
+  months[6] = ('Jul');
+  months[7] = ('Aug');
+  months[8] = ('Sep');
+  months[9] = ('Oct');
+  months[10] = ('Nov');
+  months[11] = ('Dec');
+  var re = /\d\d\d\d-\d\d?-\d\d? [0-9\.]* GMT/;
+  if(!dbString.match(re)) {
+    return '';
+  } else {
+    var dateSplit = dbString.split('-');
+    var year = dateSplit[0];
+    var month = dateSplit[1];
+    var day = dateSplit[2].split(' ')[0];
+    var time = dateSplit[2].split(' ')[1];
+
+    return day + '-' + months[month - 1] + '-' + year.substring(2) + ' ' + time + ' -0000';
+  }
+}
+
 server.get('/configuration/rssFeeds', function(req, res) {
   jdbc.open(function(err, conn) {
     if(conn) {
@@ -367,6 +395,9 @@ server.get('/configuration/rssFeeds', function(req, res) {
           logger.info(err);
         } else {
           logger.info("Fetched rss feeds");
+          for(i = 0; i < result.length; i++) {
+            result[i].LAST_CONTENT_DATE = reformatDateString(result[i].LAST_CONTENT_DATE);
+          }
           writeResponse(res, 'success', result, -1, -1, result.length);
           closeConn();
         }
@@ -385,6 +416,9 @@ server.get('/configuration/videoChannels', function(req, res) {
           logger.info(err);
         } else {
           logger.info("Fetched video channels");
+          for(i = 0; i < result.length; i++) {
+            result[i].LAST_CONTENT_DATE = reformatDateString(result[i].LAST_CONTENT_DATE);
+          }
           writeResponse(res, 'success', result, -1, -1, result.length);
           closeConn();
         }
@@ -403,6 +437,9 @@ server.get('/configuration/techZone', function(req, res) {
           logger.info(err);
         } else {
           logger.info("Fetched techzone categories");
+          for(i = 0; i < result.length; i++) {
+            result[i].LAST_CONTENT_DATE = reformatDateString(result[i].LAST_CONTENT_DATE);
+          }
           writeResponse(res, 'success', result, -1, -1, result.length);
           closeConn();
         }
