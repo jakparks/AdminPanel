@@ -1,6 +1,5 @@
 // Variables
 var express = require('express'),
-    bodyParser = require('body-parser'),
     methodOverride = require('method-override'),
     morgan = require('morgan'),
     http = require('http'),
@@ -16,10 +15,9 @@ var express = require('express'),
     DEFAULT_AVATAR = "http://www.lezebre.lu/images/21913-scooby-doo-mystery-machine-fleur.png",
     bb = require("bluebird"),
     log4js = require("log4js"),
-    zlib = require("zlib"),
+    bodyParser = require("body-parser"),
     jdbc = new ( require("jdbc") ),
-    config = require('./configuration'),
-    stream = require("stream");
+    config = require('./configuration');
 
 var basicAuth = require('basic-auth-connect');
 server.use(basicAuth(config.user, config.password));
