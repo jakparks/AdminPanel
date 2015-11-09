@@ -50,10 +50,10 @@ server.use(function(req, res, next) {
 
 //jdbc setup
 var jdbcConfig = {
-  libpath: './db/ojdbc14.jar',
+  libpath: config.jar,
   libs: [],
-  drivername: 'oracle.jdbc.driver.OracleDriver',
-  url: 'jdbc:oracle:thin:@lnxdb-dev-vm-241.cisco.com:1524:AS1DEV',
+  drivername: config.driver,
+  url: config.url,
   user: config.user,
   password: config.password
 };
