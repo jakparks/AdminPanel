@@ -48,14 +48,16 @@ server.use(function(req, res, next) {
     next();
 });
 
+var properties = propsReader('/apps/etc/config.properties');
+
 //jdbc setup
 var jdbcConfig = {
   libpath: config.jar,
   libs: [],
-  drivername: config.driver,
-  url: config.url,
-  user: config.user,
-  password: config.password
+  drivername: properties.get('jdbc.driver'),
+  url: properties.get('jdbc.url'),
+  user: properties.get('jdbc.user'),
+  password: properties.get('jdbc.password')
 };
 
 jdbc.initialize(jdbcConfig, function(err, res) {
